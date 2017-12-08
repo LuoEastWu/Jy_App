@@ -92,8 +92,7 @@ namespace jy_App
             {
 
             }
-            LoginActivity loginActivity = new LoginActivity();
-            loginActivity.getVersionName();
+
         }
 
     }

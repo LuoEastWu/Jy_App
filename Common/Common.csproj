@@ -9,4 +9,10 @@
     <PackageReference Include="System.Json" Version="4.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Mono.Android">
+      <HintPath>E:\MicrosoftVisualStudio\Community2017\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v8.0\Mono.Android.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

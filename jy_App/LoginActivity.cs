@@ -41,8 +41,7 @@ namespace jy_App
             edi_password = (EditText)FindViewById(Resource.Id.edi_password);
             btn_login = (Button)FindViewById(Resource.Id.btn_login);
             btn_setting = (Button)FindViewById(Resource.Id.btn_setting);
-            tv_version.Text= "版本号："+getVersionName();
-
+            tv_version.Text = "版本号：" + new Common.BaseActivity().GetVersionName(PackageName);
             btn_setting.Click += Btn_setting_Click;
         }
 
@@ -52,26 +51,7 @@ namespace jy_App
             StartActivity(intent);
         }
 
-        /// <summary>
-        /// 获取版本名称
-        /// </summary>
-        /// <returns></returns>
-        public String getVersionName()
-        {
-            try
-            {
-                PackageInfo packageInfo = PackageManager.GetPackageInfo(PackageName, 0);
-                int versionCode = packageInfo.VersionCode;
-                String versionName = packageInfo.VersionName;
-                Toast.MakeText(this, "versionCode" + versionCode + "versionName" + versionName, ToastLength.Short).Show();
-                return versionName;
-            }
-            catch (PackageManager.NameNotFoundException e)
-            {
-                e.PrintStackTrace();
-            }
-            return "";
-        }
+        
 
     }
 }
