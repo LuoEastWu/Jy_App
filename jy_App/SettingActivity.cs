@@ -13,6 +13,7 @@ using System.IO;
 using Java.Net;
 using Common;
 using System.Json;
+using static Common.BaseActivity;
 
 namespace jy_App
 {
@@ -30,6 +31,8 @@ namespace jy_App
         private String url_down;
         private Button btn_server_select;
         private Button test;
+        private ProgressBar _progressBar;
+        private Context myContext;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -54,6 +57,7 @@ namespace jy_App
             btn_exit.Click += new System.EventHandler(this.Button_Click);
             btn_server_select.Click += new System.EventHandler(this.Button_Click);
             test.Click += new System.EventHandler(this.Button_Click);
+            myContext = this;
         }
 
         private void Button_Click(object sender, EventArgs e)
@@ -90,10 +94,20 @@ namespace jy_App
             var data = Common.DataWorking.JsonToObject<Models.Version>(HttpHelp.HttpGet(url, ""));
             if (data.EJEAndroidPDA.Count > 0)
             {
-
+                var dd = new Common.BaseActivity().GetVersionName(PackageName, PackageManager);
+                if (data.EJEAndroidPDA[0].Vosoin != dd)
+                {
+                    _progressBar = new ProgressBar(myContext);
+                    _progressBar.Progress = 0;
+                    Progress<DownloadBytesProgress> progressReporter = new Progress<DownloadBytesProgress>();
+                    progressReporter.ProgressChanged += (s, args) => _progressBar.Progress = (int)(100 * args.PercentComplete);
+                    new Common.BaseActivity().run(data.EJEAndroidPDA[0].Geturl, progressReporter);
+                }
             }
 
         }
+
+
 
     }
 

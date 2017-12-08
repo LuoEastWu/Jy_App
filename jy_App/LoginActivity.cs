@@ -41,7 +41,7 @@ namespace jy_App
             edi_password = (EditText)FindViewById(Resource.Id.edi_password);
             btn_login = (Button)FindViewById(Resource.Id.btn_login);
             btn_setting = (Button)FindViewById(Resource.Id.btn_setting);
-            tv_version.Text = "版本号：" + new Common.BaseActivity().GetVersionName(PackageName);
+            tv_version.Text = "版本号：" + new Common.BaseActivity().GetVersionName(PackageName,PackageManager);
             btn_setting.Click += Btn_setting_Click;
         }
 
